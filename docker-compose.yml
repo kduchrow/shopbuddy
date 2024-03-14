@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+    mongo:
+        image: mongo
+
+    client:
+        image: shopbuddy_app
+        build:
+            context: ./client
+            dockerfile: Dockerfile
+        ports:
+        - 8501:8501
+    
+    server:
+        image: shopbuddy_api
+        build:
+            context: ./server
+            dockerfile: Dockerfile
+        ports:
+        - 8000:8000
