@@ -6,5 +6,7 @@ WORKDIR /app
 RUN pip install -r requirements.txt
 
 COPY app.py app.py
+COPY models/__init__.py models/__init__.py
+COPY models/models.py models/models.py
 
 CMD ["uvicorn", "--host", "0.0.0.0", "app:app"]

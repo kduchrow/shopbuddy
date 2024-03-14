@@ -12,8 +12,12 @@ with st.form("Insert fruit"):
     # Every form must have a submit button.
     submitted = st.form_submit_button("Submit")
     if submitted:
-        # Add new fruit 
-        requests.post(f"http://server:8000/add/{fruit}")
+        
+        shop = {
+                "shop_name": "Cyberport"
+            }
+
+        requests.post(f"http://server:8000/", json=shop)
 
         # get all fruits
         fruits = requests.get("http://server:8000/list")
