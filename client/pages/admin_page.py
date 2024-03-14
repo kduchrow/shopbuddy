@@ -7,18 +7,16 @@ st.markdown("Admin Page")
 
 with st.form("Insert fruit"):
     st.write("Fruit form")
-    fruit = st.text_input("Fruit", '')
+    shop = st.text_input("Shop", '')
 
     # Every form must have a submit button.
     submitted = st.form_submit_button("Submit")
     if submitted:
         
         shop = {
-                "shop_name": "Cyberport"
+                "shop_name": shop
             }
 
         requests.post(f"http://server:8000/", json=shop)
 
-        # get all fruits
-        fruits = requests.get("http://server:8000/list")
-        st.write(fruits.json())
+        st.write(requests.get("http://server:8000/list"))
