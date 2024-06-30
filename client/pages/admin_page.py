@@ -19,4 +19,9 @@ with st.form("Insert fruit"):
 
         requests.post(f"http://server:8000/", json=shop)
 
-        st.write(requests.get("http://server:8000/list"))
+
+with st.form("List Shops"):
+    st.write("List")
+    submitted = st.form_submit_button("Submit")
+    if submitted:
+        st.write(requests.get("http://server:8000/list").json())
