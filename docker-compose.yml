@@ -1,8 +1,24 @@
 version: '3'
 
 services:
-    mongo:
-        image: mongo
+    database:
+        image: postgres
+        environment:
+            - POSTGRES_USER=shopbuddy
+            - POSTGRES_PASSWORD=shopbuddy
+            - POSTGRES_DB=shopbuddy
+        ports:
+        - 5432:5432
+
+    pgadmin:
+        image: dpage/pgadmin4
+        environment:
+            - PGADMIN_DEFAULT_EMAIL=admin@example.com
+            - PGADMIN_DEFAULT_PASSWORD=admin
+        ports:
+        - 5050:80
+        depends_on:
+            - database
 
     client:
         image: shopbuddy_app
@@ -11,6 +27,8 @@ services:
             dockerfile: Dockerfile
         ports:
         - 8501:8501
+        depends_on:
+            - server
     
     server:
         image: shopbuddy_api
@@ -19,3 +37,6 @@ services:
             dockerfile: Dockerfile
         ports:
         - 8000:8000
+        depends_on:
+            - database
+    

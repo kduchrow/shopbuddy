@@ -1,31 +1,25 @@
 import uuid
-from typing import Optional
-from pydantic import BaseModel, Field
+from sqlalchemy import Column, String, Float
+from sqlalchemy.ext.declarative import declarative_base
 
-class Shop(BaseModel):
-    id: str = Field(default_factory=uuid.uuid4, alias="_id")
-    shop_name: str = Field(...)
+Base = declarative_base()
 
-    class Config:
-        allow_population_by_field_name = True
-        schema_extra = {
-            "example": {
-                "_id": "066de609-b04a-4b30-b46c-32537c7f1f6e",
-                "shop_name": "Amazon"
-            }
-        }
-'''
-class BookUpdate(BaseModel):
-    title: Optional[str]
-    author: Optional[str]
-    synopsis: Optional[str]
+class Shop(Base):
+    __tablename__ = 'shops'
 
-    class Config:
-        schema_extra = {
-            "example": {
-                "title": "Don Quixote",
-                "author": "Miguel de Cervantes",
-                "synopsis": "Don Quixote is a Spanish novel by Miguel de Cervantes..."
-            }
-        }
-        '''
+    id = Column(String(36), primary_key=True, default=str(uuid.uuid4()))
+    shop_name = Column(String(255), nullable=False)
+
+class BonusProgramm(Base):
+    __tablename__ = 'bonus_programs'
+
+    id = Column(String(36), primary_key=True, default=str(uuid.uuid4()))
+    bonus_program_name = Column(String(255), nullable=False)
+
+class CashbackProgramm(Base):
+    __tablename__ = 'cashback_programs'
+
+    id = Column(String(36), primary_key=True, default=str(uuid.uuid4()))
+    bonus_program_id = Column(String(36), nullable=False)
+    shop_id = Column(String(36), nullable=False)
+    cashbackrate = Column(Float, nullable=False)

@@ -1,7 +1,12 @@
-pymongo
+pymysql
+sqlalchemy
 uvicorn
 fastapi
-pandas
+#pandas
 typing
-pydantic
 uuid
+packaging
+#mariadb==1.1.10
+#postgresql
+#pyscopg2
+psycopg2-binary
