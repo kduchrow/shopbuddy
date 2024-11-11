@@ -7,20 +7,20 @@ st.markdown("Admin Page")
 
 
 server_url = "http://server:8000"
-
+'''
 with st.form("List Shops"):
     st.write("List")
     submitted = st.form_submit_button("Submit")
     if submitted:
         st.write(requests.get(f"{server_url}/list").json())
-
+'''
 with st.form("List Bonus Programs"):
     st.write("List Bonus Programs")
     submitted = st.form_submit_button("Submit")
     if submitted:
         st.write(requests.get(f"{server_url}/listBonusPrograms").json())
 
-
+'''
 with st.form("List Cashback Programs"):
     st.write("List Cashback Programs")
     submitted = st.form_submit_button("Submit")
@@ -31,7 +31,7 @@ with st.form("List Cashback Programs"):
         #    st.table(cashback_programs)
         #else:
         #    st.write("No cashback programs found.")
-
+'''
 
 with st.form("Add Shop"):
     st.write("shop Form")
@@ -45,7 +45,7 @@ with st.form("Add Shop"):
                 "shop_name": shop
             }
 
-        requests.post(f"{server_url}/add/Shop", json=shop)
+        requests.post(f"{server_url}/shops", json=shop)
 
 
 with st.form("Add Bonus Program"):
@@ -60,7 +60,7 @@ with st.form("Add Bonus Program"):
         requests.post(f"{server_url}/add/BonusProgram", json=bonus_program)
         st.write("Bonus program added successfully!")
 
-
+'''
 with st.form("Add Cashback Program"):
     st.write("Cashback Program Form")
 
@@ -86,3 +86,4 @@ with st.form("Add Cashback Program"):
         st.write("Cashback program added successfully!")
 
 
+'''
